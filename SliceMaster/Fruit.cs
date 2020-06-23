@@ -8,7 +8,6 @@ namespace SliceMaster
 {
     public abstract class Fruit
     {
-        public string Name { get; set; }
 
     }
 }
