@@ -33,7 +33,10 @@
             this.toolStripLabelPoints = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.saveGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +61,10 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newGameToolStripMenuItem});
+            this.newGameToolStripMenuItem,
+            this.saveGameToolStripMenuItem,
+            this.openGameToolStripMenuItem,
+            this.pauseToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(884, 24);
@@ -68,8 +74,31 @@
             // newGameToolStripMenuItem
             // 
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-            this.newGameToolStripMenuItem.Text = "New game";
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.newGameToolStripMenuItem.Text = "New Game";
+            // 
+            // saveGameToolStripMenuItem
+            // 
+            this.saveGameToolStripMenuItem.Name = "saveGameToolStripMenuItem";
+            this.saveGameToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.saveGameToolStripMenuItem.Text = "Save Game";
+            // 
+            // openGameToolStripMenuItem
+            // 
+            this.openGameToolStripMenuItem.Name = "openGameToolStripMenuItem";
+            this.openGameToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.openGameToolStripMenuItem.Text = "Open Game";
+            // 
+            // pauseToolStripMenuItem
+            // 
+            this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.pauseToolStripMenuItem.Text = "Pause";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -80,6 +109,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -95,7 +125,10 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabelPoints;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem newGameToolStripMenuItem;
-        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.ToolStripMenuItem saveGameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openGameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pauseToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,11 @@ namespace SliceMaster
     {
         public Watermelon(string Name, Point Location) : base(Name, Location)
         {
-            Radius = 40;
-            //FruitImage = Images/watermelon.png namesti ja ti nz kak
+            Radius = 50;
+            FruitImage = Properties.Resources.watermelon;
             Points = 3;
             //FruitImageAfterHit 
+
         }
         public override bool IsHitByUser(Point p1, Point p2)
         // za voa metod moze ke treba dve tocki, pa da naprajme linija od
@@ -52,7 +54,9 @@ namespace SliceMaster
 
         public override void Draw(Graphics g)
         {
-            throw new NotImplementedException();
+            Bitmap bitmap = new Bitmap(FruitImage);
+            bitmap.MakeTransparent();
+            g.DrawImage(bitmap, new Rectangle(Location.X, Location.Y, (int)Radius * 2, (int)Radius * 2));
         }
     }
 }

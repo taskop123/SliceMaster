@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SliceMaster
 {
@@ -11,14 +13,17 @@ namespace SliceMaster
     {
         public Bomb(string Name, Point Location) : base(Name, Location)
         {
-            Radius = 20;
+            Radius = 32;
             Points = 0;
-            // Images/bomb.png
+            FruitImage = Properties.Resources.bomba;
         }
 
         public override void Draw(Graphics g)
         {
-            throw new NotImplementedException();
+            Bitmap bitmap = new Bitmap(FruitImage);
+            bitmap.MakeTransparent();
+            g.DrawImage(bitmap, new Rectangle(Location.X, Location.Y, (int)Radius * 2, (int)Radius * 2));
+
         }
 
         public override bool IsHitByUser(Point p1, Point p2)

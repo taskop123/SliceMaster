@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,14 @@ namespace SliceMaster
         {
             Radius = 30;
             Points = 4;
-            // Images/apple.png
+            FruitImage = Properties.Resources.apple;
         }
 
         public override void Draw(Graphics g)
         {
-            throw new NotImplementedException();
+            Bitmap bitmap = new Bitmap(FruitImage);
+            bitmap.MakeTransparent();
+            g.DrawImage(bitmap, new Rectangle(Location.X, Location.Y, (int)Radius * 2, (int)Radius * 2));
         }
 
         public override bool IsHitByUser(Point p1,Point p2)
@@ -46,7 +49,7 @@ namespace SliceMaster
             }
             else
             {
-                this.Location = new Point((int)(Location.X - velocity), (int)(Location.Y + velocity));
+                this.Location = new Point((int)(Location.X + velocity), (int)(Location.Y + velocity));
             }
         }
     }

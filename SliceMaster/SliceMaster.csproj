@@ -48,6 +48,9 @@
   <ItemGroup>
     <Compile Include="Apple.cs" />
     <Compile Include="Bomb.cs" />
+    <Compile Include="CircularPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +76,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -86,6 +90,32 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orange.png" />
+    <None Include="Resources\background.png" />
+    <None Include="Resources\watermelon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Watermelon-Transparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pineapple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\strawberry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orange1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomba.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
