@@ -10,9 +10,9 @@ namespace SliceMaster
 {
     public class Pineapple : Fruit
     {
-        public Pineapple(string Name, Point Location) : base(Name, Location)
+        public Pineapple(string Name, Point Location, int Direction, int Radius) :
+            base(Name, Location, Direction, Radius)
         {
-            Radius = 30;
             Points = 4;
             FruitImage = Properties.Resources.pineapple;
         }
@@ -22,34 +22,35 @@ namespace SliceMaster
             Bitmap bitmap = new Bitmap(FruitImage);
             bitmap.MakeTransparent();
             g.DrawImage(bitmap, new Rectangle(Location.X, Location.Y, (int)Radius * 2, (int)Radius * 2));
+            bitmap.Dispose();
         }
 
-        public override bool IsHitByUser(Point p1,Point p2)
+        public override bool IsHitByUser(Point p1, Point p2)
         {
             throw new NotImplementedException();
         }
 
-        public override void MoveDown(float velocity, int direction)
+        public override void MoveDown(float velocity)
         {
-            if (direction == 1)
+            if (this.Direction == 1)
             {
-                this.Location = new Point((int)(Location.X - velocity), (int)(Location.Y - velocity));
+                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y - velocity - 2));
             }
             else
             {
-                this.Location = new Point((int)(Location.X + velocity), (int)(Location.Y - velocity));
+                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y - velocity - 2));
             }
         }
 
-        public override void MoveUp(float velocity, int direction)
+        public override void MoveUp(float velocity)
         {
-            if (direction == 1)
+            if (this.Direction == 1)
             {
-                this.Location = new Point((int)(Location.X - velocity), (int)(Location.Y + velocity));
+                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y + velocity - 2));
             }
             else
             {
-                this.Location = new Point((int)(Location.X + velocity), (int)(Location.Y + velocity));
+                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y + velocity - 2));
             }
         }
     }

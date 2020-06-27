@@ -10,13 +10,11 @@ namespace SliceMaster
 {
     public class Watermelon : Fruit
     {
-        public Watermelon(string Name, Point Location) : base(Name, Location)
+        public Watermelon(string Name, Point Location, int Direction, int Radius) :
+            base(Name, Location, Direction, Radius)
         {
-            Radius = 50;
             FruitImage = Properties.Resources.watermelon;
             Points = 3;
-            //FruitImageAfterHit 
-
         }
         public override bool IsHitByUser(Point p1, Point p2)
         // za voa metod moze ke treba dve tocki, pa da naprajme linija od
@@ -25,30 +23,27 @@ namespace SliceMaster
             throw new NotImplementedException();
         }
 
-        public override void MoveUp(float velocity, int direction)
+        public override void MoveDown(float velocity)
         {
-            if (direction == 1)
+            if (this.Direction == 1)
             {
-                // od desno kon levo i vo koso, x se namaluva, y se zgolemuva
-                this.Location = new Point((int)(Location.X - velocity), (int)(Location.Y + velocity));
+                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y - velocity-2));
             }
             else
             {
-                // od levo kon desno, x se zgolemuva, y se zgolemuva
-                this.Location = new Point((int)(Location.X + velocity), (int)(Location.Y + velocity));
+                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y - velocity-2));
             }
         }
-        public override void MoveDown(float velocity, int direction)
+
+        public override void MoveUp(float velocity)
         {
-            if (direction == 1)
+            if (this.Direction == 1)
             {
-                // od desno kon levo i vo koso, x se namaluva, y se namaluva
-                this.Location = new Point((int)(Location.X - velocity), (int)(Location.Y - velocity));
+                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y + velocity-2));
             }
             else
             {
-                // od levo kon desno, x se zgolemuva, y se namaluva
-                this.Location = new Point((int)(Location.X + velocity), (int)(Location.Y - velocity));
+                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y + velocity-2));
             }
         }
 
@@ -57,6 +52,7 @@ namespace SliceMaster
             Bitmap bitmap = new Bitmap(FruitImage);
             bitmap.MakeTransparent();
             g.DrawImage(bitmap, new Rectangle(Location.X, Location.Y, (int)Radius * 2, (int)Radius * 2));
+            bitmap.Dispose();
         }
     }
 }

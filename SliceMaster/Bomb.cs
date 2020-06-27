@@ -11,9 +11,9 @@ namespace SliceMaster
 {
     public class Bomb : Fruit
     {
-        public Bomb(string Name, Point Location) : base(Name, Location)
+        public Bomb(string Name, Point Location, int Direction, int Radius) :
+            base(Name, Location, Direction, Radius)
         {
-            Radius = 32;
             Points = 0;
             FruitImage = Properties.Resources.bomba;
         }
@@ -23,7 +23,7 @@ namespace SliceMaster
             Bitmap bitmap = new Bitmap(FruitImage);
             bitmap.MakeTransparent();
             g.DrawImage(bitmap, new Rectangle(Location.X, Location.Y, (int)Radius * 2, (int)Radius * 2));
-
+            bitmap.Dispose();
         }
 
         public override bool IsHitByUser(Point p1, Point p2)
@@ -31,31 +31,27 @@ namespace SliceMaster
             throw new NotImplementedException();
         }
 
-        public override void MoveDown(float velocity, int direction)
+        public override void MoveDown(float velocity)
         {
-            if (direction == 1)
+            if (this.Direction == 1)
             {
-                // od desno kon levo i vo koso, x se namaluva, y se namaluva
-                this.Location = new Point((int)(Location.X - velocity), (int)(Location.Y - velocity));
+                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y - velocity - 2));
             }
             else
             {
-                // od levo kon desno, x se zgolemuva, y se namaluva
-                this.Location = new Point((int)(Location.X + velocity), (int)(Location.Y - velocity));
+                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y - velocity - 2));
             }
         }
 
-        public override void MoveUp(float velocity, int direction)
+        public override void MoveUp(float velocity)
         {
-            if (direction == 1)
+            if (this.Direction == 1)
             {
-                // od desno kon levo i vo koso, x se namaluva, y se zgolemuva
-                this.Location = new Point((int)(Location.X - velocity), (int)(Location.Y + velocity));
+                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y + velocity - 2));
             }
             else
             {
-                // od levo kon desno, x se zgolemuva, y se zgolemuva
-                this.Location = new Point((int)(Location.X + velocity), (int)(Location.Y + velocity));
+                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y + velocity - 2));
             }
         }
     }
