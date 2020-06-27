@@ -43,14 +43,15 @@ namespace SliceMaster
 
         public override void MoveUp(float velocity, int direction)
         {
-            if (direction == 1)
+            /*if (direction == 1)
             {
                 this.Location = new Point((int)(Location.X - velocity), (int)(Location.Y + velocity));
             }
             else
             {
                 this.Location = new Point((int)(Location.X + velocity), (int)(Location.Y + velocity));
-            }
+            }*/
+            this.Location = new Point((int)(Location.X + velocity), (int)(Location.Y));
         }
     }
 }
