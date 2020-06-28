@@ -13,14 +13,23 @@ namespace SliceMaster
         public int TotalPoints { get; set; }
         public int Misses { get; set; }// TODO: ako ima 3 ili 5 misses(po nas izbor) da se prekine igrata
         //brzina na dvizenje za site ovosja
-        public static string[] FruitNames = new string[] { "Watermelon", "Apple", "Pineapple", "Bomb", "Orange", "Strawberry" }; // ovaa promenliva ke mi koristi koga ke dodavame novo ovosje vo ovaa klasa!
+        public static string[] FruitNames = new string[] {
+            "Watermelon",
+            "Apple",
+            "Pineapple",
+            "Orange",
+            "Strawberry"
+        }; // ovaa promenliva ke mi koristi koga ke dodavame novo ovosje vo ovaa klasa!
         public int DirectionOfFruit { get; set; } // 0 - od levo kon desno, 1 - od desno kon levo
         public int Width { get; set; }
         public int Height { get; set; }
+        public bool GameOver { get; set; }
+
 
         //konstruktor
         public GameScene(int WidthOfForm, int HeightOfForm)
         {
+            GameOver = false;
             TotalPoints = 0;
             Misses = 0;
             AllFruits = new List<Fruit>();
@@ -87,8 +96,12 @@ namespace SliceMaster
                         //ZA JOVAN: tuka moze da brojme kolko pti nekoe ovosje ne bilo seceno!
                     }
                 }
-
             }
+            deleteFruits();
+        }
+
+        private void deleteFruits()
+        {
             for (int i = 0; i < AllFruits.Count; i++)
             {
                 if (AllFruits[i].State == 0)
@@ -97,8 +110,14 @@ namespace SliceMaster
                     if (!AllFruits[i].Name.Equals("Bomb"))
                         Misses++;
                     AllFruits.RemoveAt(i);
+                    if (Misses == 3)
+                        GameOver = true;
                 }
             }
+        }
+        public void RemoveAll()
+        {
+            AllFruits.Clear();
         }
     }
 }

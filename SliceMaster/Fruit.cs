@@ -43,6 +43,6 @@ namespace SliceMaster
         public abstract void MoveUp(float velocity); // Metod koj ke ni go dvizi ovosjeto nagore
         public abstract void MoveDown(float velocity); // Metod koj ke ni go dvizi ovosjeto nadole
         public abstract void Draw(Graphics g); // crtanje na ovosjeto
-        public abstract bool IsHitByUser(Point p1, Point p2); // metod koj ke proveruva dali korisnikot go presekol ovosjeto
+        public abstract void IsHitByUser(Point p1, Point p2); // metod koj ke proveruva dali korisnikot go presekol ovosjeto
     }
 }

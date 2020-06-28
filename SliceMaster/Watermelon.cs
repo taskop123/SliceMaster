@@ -13,10 +13,10 @@ namespace SliceMaster
         public Watermelon(string Name, Point Location, int Direction, int Radius) :
             base(Name, Location, Direction, Radius)
         {
-            FruitImage = Properties.Resources.watermelon;
+            FruitImage = Properties.Resources.watermelon2;
             Points = 3;
         }
-        public override bool IsHitByUser(Point p1, Point p2)
+        public override void IsHitByUser(Point p1, Point p2)
         // za voa metod moze ke treba dve tocki, pa da naprajme linija od
         //tie dve tocki i proverme dali linijata ja sece elipsata ? mouseclick i mouseleave msm oti e koa ke pustis
         {
@@ -27,11 +27,11 @@ namespace SliceMaster
         {
             if (this.Direction == 1)
             {
-                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y - velocity-2));
+                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y - velocity - 2));
             }
             else
             {
-                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y - velocity-2));
+                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y - velocity - 2));
             }
         }
 
@@ -39,11 +39,11 @@ namespace SliceMaster
         {
             if (this.Direction == 1)
             {
-                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y + velocity-2));
+                this.Location = new Point((int)(Location.X - velocity * 2), (int)(Location.Y + velocity - 2));
             }
             else
             {
-                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y + velocity-2));
+                this.Location = new Point((int)(Location.X + velocity * 2), (int)(Location.Y + velocity - 2));
             }
         }
 

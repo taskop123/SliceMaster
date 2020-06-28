@@ -37,12 +37,12 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnPlay.BackColor = System.Drawing.Color.Transparent;
             this.btnPlay.BackgroundImage = global::SliceMaster.Properties.Resources.background;
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlay.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnPlay.Location = new System.Drawing.Point(373, 351);
+            this.btnPlay.Location = new System.Drawing.Point(380, 334);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(159, 69);
             this.btnPlay.TabIndex = 0;
@@ -52,16 +52,17 @@
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.BackgroundImage = global::SliceMaster.Properties.Resources.background;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnExit.Location = new System.Drawing.Point(733, 405);
+            this.btnExit.Location = new System.Drawing.Point(758, 436);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(81, 33);
             this.btnExit.TabIndex = 1;
             this.btnExit.Text = "Quit game";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblBestScore
@@ -70,7 +71,7 @@
             this.lblBestScore.BackColor = System.Drawing.Color.Transparent;
             this.lblBestScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBestScore.ForeColor = System.Drawing.Color.Black;
-            this.lblBestScore.Location = new System.Drawing.Point(56, 407);
+            this.lblBestScore.Location = new System.Drawing.Point(45, 438);
             this.lblBestScore.Name = "lblBestScore";
             this.lblBestScore.Size = new System.Drawing.Size(173, 31);
             this.lblBestScore.TabIndex = 2;
@@ -80,11 +81,11 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.BackColor = System.Drawing.Color.Transparent;
-            this.lblName.Font = new System.Drawing.Font("Script MT Bold", 80F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Font = new System.Drawing.Font("Script MT Bold", 90F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.DarkKhaki;
-            this.lblName.Location = new System.Drawing.Point(165, 87);
+            this.lblName.Location = new System.Drawing.Point(135, 34);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(595, 129);
+            this.lblName.Size = new System.Drawing.Size(668, 144);
             this.lblName.TabIndex = 3;
             this.lblName.Text = "Slice Master";
             // 

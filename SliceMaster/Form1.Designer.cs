@@ -32,10 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabelPoints = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabelMisses = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblGameOver = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -44,8 +45,7 @@
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabelPoints,
-            this.toolStripLabelMisses});
+            this.toolStripLabelPoints});
             this.toolStrip1.Location = new System.Drawing.Point(0, 436);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(884, 25);
@@ -57,13 +57,6 @@
             this.toolStripLabelPoints.Name = "toolStripLabelPoints";
             this.toolStripLabelPoints.Size = new System.Drawing.Size(52, 22);
             this.toolStripLabelPoints.Text = "Points: 0";
-            // 
-            // toolStripLabelMisses
-            // 
-            this.toolStripLabelMisses.Name = "toolStripLabelMisses";
-            this.toolStripLabelMisses.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripLabelMisses.Size = new System.Drawing.Size(54, 22);
-            this.toolStripLabelMisses.Text = "Misses: 0";
             // 
             // menuStrip1
             // 
@@ -89,7 +82,34 @@
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblGameOver
+            // 
+            this.lblGameOver.AutoSize = true;
+            this.lblGameOver.BackColor = System.Drawing.Color.Transparent;
+            this.lblGameOver.Font = new System.Drawing.Font("Ravie", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGameOver.ForeColor = System.Drawing.Color.DarkKhaki;
+            this.lblGameOver.Location = new System.Drawing.Point(94, 152);
+            this.lblGameOver.Name = "lblGameOver";
+            this.lblGameOver.Size = new System.Drawing.Size(730, 114);
+            this.lblGameOver.TabIndex = 2;
+            this.lblGameOver.Text = "GAME OVER";
+            this.lblGameOver.Visible = false;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.ForeColor = System.Drawing.Color.DarkKhaki;
+            this.lblTotal.Location = new System.Drawing.Point(313, 313);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(286, 46);
+            this.lblTotal.TabIndex = 3;
+            this.lblTotal.Text = "Total points: 0";
+            this.lblTotal.Visible = false;
             // 
             // Form1
             // 
@@ -97,6 +117,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SliceMaster.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -122,7 +144,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem pauseToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabelMisses;
+        private System.Windows.Forms.Label lblGameOver;
+        private System.Windows.Forms.Label lblTotal;
         //       private System.Windows.Forms.Timer timer1;
     }
 }

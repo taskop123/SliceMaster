@@ -109,7 +109,7 @@
     <None Include="Resources\watermelon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Watermelon-Transparent.png" />
+    <None Include="Resources\watermelon2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pineapple.png" />
@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_picture_uyx_icon.ico" />
+    <None Include="Resources\Xsign.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

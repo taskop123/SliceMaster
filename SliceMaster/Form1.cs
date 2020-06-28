@@ -22,9 +22,12 @@ namespace SliceMaster
         private Point PreviousPoint;
         private Pen Pen;
         private Graphics graphics;
+        public int TotalPoints { get; set; }
+        private Timer timer;
 
         public Form1()
         {
+            TotalPoints = 0;
             Game = new GameScene(this.Width, this.Height);
             InitializeComponent();
             this.DoubleBuffered = true;
@@ -35,6 +38,7 @@ namespace SliceMaster
             Pause = false;
             graphics = this.CreateGraphics();
             Pen = new Pen(Color.Gray, 5);
+            DialogResult = DialogResult.Cancel;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -51,24 +55,24 @@ namespace SliceMaster
                     Game.DirectionOfFruit = Game.DirectionOfFruit == 1 ? 0 : 1;
                     if (Game.DirectionOfFruit == 0)
                     {
-                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(6)],
+                        Game.AddFruit("Bomb",
                             new Point(LocationPicker.Next(-80, -50), LocationPicker.Next(140, 160)));
 
-                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(6)],
+                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(5)],
                             new Point(LocationPicker.Next(-80, -50), LocationPicker.Next(180, 200)));
 
-                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(6)],
+                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(5)],
                              new Point(LocationPicker.Next(-80, -50), LocationPicker.Next(220, 240)));
                     }
                     else
                     {
-                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(6)],
+                        Game.AddFruit("Bomb",
                             new Point(LocationPicker.Next(Width - 30, Width), LocationPicker.Next(140, 160)));
 
-                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(6)],
+                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(5)],
                             new Point(LocationPicker.Next(Width - 30, Width), LocationPicker.Next(180, 200)));
 
-                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(6)],
+                        Game.AddFruit(GameScene.FruitNames[randomFruitPicker.Next(5)],
                             new Point(LocationPicker.Next(Width - 30, Width), LocationPicker.Next(220, 240)));
                     }
                 }
@@ -76,15 +80,28 @@ namespace SliceMaster
                 Game.Height = Height;
                 Game.MoveFruits();
                 TimerCall++;
+                if (Game.GameOver)
+                    GameOver();
                 updatePointsAndMisses();
                 Invalidate();
             }
         }
+        // ne znam zso trepkat X znacte za miss, ako mojs sredi
         public void updatePointsAndMisses()
         {
+            Bitmap bitmap = new Bitmap(Properties.Resources.Xsign);
+            bitmap.MakeTransparent();
             toolStripLabelPoints.Text = string.Format("Points: {0}", Game.TotalPoints);
-            toolStripLabelMisses.Text = string.Format("Misses: {0}", Game.Misses);
-
+            if (Game.Misses >= 1)
+                graphics.DrawImage(bitmap,
+                    new Rectangle(832, 393, 42, 36));
+            if (Game.Misses >= 2)
+                graphics.DrawImage(bitmap,
+                    new Rectangle(784, 393, 42, 36));
+            if (Game.Misses == 3)
+                graphics.DrawImage(bitmap,
+                    new Rectangle(736, 393, 42, 36));
+            bitmap.Dispose();
         }
 
         private void Form1_ResizeEnd(object sender, EventArgs e)
@@ -117,14 +134,41 @@ namespace SliceMaster
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 CurrentPoint = e.Location;
                 graphics.DrawLine(Pen, PreviousPoint, CurrentPoint);
                 PreviousPoint = CurrentPoint;
             }
-            
         }
-
+        // tuka sakum da postoa 3-4 sek otkoga ke zavrse igrata i da pise game over
+        //labelta so e vo formata visible=false, tuka a pravum true
+        //gi brisum i site ovosja a totalpoints ni treba za homepage formata za best score
+        private void GameOver()
+        {
+            timer1.Stop();
+            TotalPoints = Game.TotalPoints;
+            lblGameOver.Visible = true;
+            lblTotal.Text = string.Format("Total points: {0}", TotalPoints);
+            lblTotal.Visible = true;
+            Game.RemoveAll();
+            TimerCall = 0;
+            timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (TimerCall == 4)
+            {
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                TimerCall++;
+            }
+        }
     }
 }

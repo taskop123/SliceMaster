@@ -25,7 +25,7 @@ namespace SliceMaster
             bitmap.Dispose();
         }
 
-        public override bool IsHitByUser(Point p1, Point p2)
+        public override void IsHitByUser(Point p1, Point p2)
         {
             throw new NotImplementedException();
         }
