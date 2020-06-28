@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabelPoints = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabelMisses = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripLabelMisses = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +57,13 @@
             this.toolStripLabelPoints.Name = "toolStripLabelPoints";
             this.toolStripLabelPoints.Size = new System.Drawing.Size(52, 22);
             this.toolStripLabelPoints.Text = "Points: 0";
+            // 
+            // toolStripLabelMisses
+            // 
+            this.toolStripLabelMisses.Name = "toolStripLabelMisses";
+            this.toolStripLabelMisses.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripLabelMisses.Size = new System.Drawing.Size(54, 22);
+            this.toolStripLabelMisses.Text = "Misses: 0";
             // 
             // menuStrip1
             // 
@@ -83,13 +91,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // toolStripLabelMisses
-            // 
-            this.toolStripLabelMisses.Name = "toolStripLabelMisses";
-            this.toolStripLabelMisses.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripLabelMisses.Size = new System.Drawing.Size(54, 22);
-            this.toolStripLabelMisses.Text = "Misses: 0";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,10 +99,13 @@
             this.ClientSize = new System.Drawing.Size(884, 461);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "SliceMaster";
             this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

@@ -17,6 +17,7 @@ namespace SliceMaster
         public int DirectionOfFruit { get; set; } // 0 - od levo kon desno, 1 - od desno kon levo
         public int Width { get; set; }
         public int Height { get; set; }
+
         //konstruktor
         public GameScene(int WidthOfForm, int HeightOfForm)
         {

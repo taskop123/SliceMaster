@@ -18,6 +18,11 @@ namespace SliceMaster
         private Random LocationPicker;
         private int TimerCall;
         private bool Pause;
+        private Point CurrentPoint;
+        private Point PreviousPoint;
+        private Pen Pen;
+        private Graphics graphics;
+
         public Form1()
         {
             Game = new GameScene(this.Width, this.Height);
@@ -28,6 +33,8 @@ namespace SliceMaster
             TimerCall = 0;
             timer1.Start();
             Pause = false;
+            graphics = this.CreateGraphics();
+            Pen = new Pen(Color.Gray, 5);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -102,5 +109,22 @@ namespace SliceMaster
                 pauseToolStripMenuItem.Text = "Pause";
             }
         }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            PreviousPoint = e.Location;
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                CurrentPoint = e.Location;
+                graphics.DrawLine(Pen, PreviousPoint, CurrentPoint);
+                PreviousPoint = CurrentPoint;
+            }
+            
+        }
+
     }
 }
