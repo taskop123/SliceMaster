@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WMPLib;
 
 namespace SliceMaster
 {
@@ -24,6 +25,8 @@ namespace SliceMaster
         public int Width { get; set; }
         public int Height { get; set; }
         public bool GameOver { get; set; }
+        //WindowsMediaPlayer FruitSlicedSound;
+        WindowsMediaPlayer BombSliced;
 
 
         //konstruktor
@@ -36,6 +39,9 @@ namespace SliceMaster
             DirectionOfFruit = 0;
             this.Width = WidthOfForm;
             this.Height = HeightOfForm;
+            //FruitSlicedSound = new WindowsMediaPlayer();
+            BombSliced = new WindowsMediaPlayer();
+            //FruitSlicedSound.URL = "fruit_cut.mp3";
         }
         // Go iskomentirah voa oti ne znam bash da najdum soodveten radius za daden Width i Height
         // Na primer za 900, 500 da bide 35 ako ti dojde nekoja ideja implementiri go, i vo AddFruit na mestoto na radius
@@ -74,7 +80,19 @@ namespace SliceMaster
         {
             foreach (Fruit f in AllFruits)
             {
+                Bitmap bitmap = new Bitmap(Properties.Resources.Xsign);
+                bitmap.MakeTransparent();
                 f.Draw(g);
+                if (this.Misses >= 1)
+                    g.DrawImage(bitmap,
+                        new Rectangle(832, 393, 42, 36));
+                if (this.Misses >= 2)
+                    g.DrawImage(bitmap,
+                        new Rectangle(784, 393, 42, 36));
+                if (this.Misses == 3)
+                    g.DrawImage(bitmap,
+                        new Rectangle(736, 393, 42, 36));
+                bitmap.Dispose();
             }
         }
         public void MoveFruits()
@@ -89,25 +107,44 @@ namespace SliceMaster
                 {
                     f.UpOrDown = false;
                     f.MoveDown(f.Velocity);
-                    if (f.Location.X > this.Width + 110 || f.Location.X < -110) // Ovoj uslov mi proveruva dali ovosjeto veke si ja zavrsilo traektorijata i ne bilo preseceno
+                    if (f.Location.X > this.Width + 110 || f.Location.X < -110 || f.IsHit) // Ovoj uslov mi proveruva dali ovosjeto veke si ja zavrsilo traektorijata i ne bilo preseceno
                     {// proveruva dali po x oskata e pogolema od goleminata na formata + 50 toa mi e na nekoj nacin offset (go stavam ovoj offset bidejki moze da se sluci uste ne izlezen na ekranot ovosjeto da bide unisteno)
                      // Dodeka drugiot del mi proveruva ako ovosjeto se dvizi od desno kon levo dali po X oskata vrednosta e pomala od -50px vo levo   
                         f.State = 0; // do ovoj if se stignuva dokolku
                         //ZA JOVAN: tuka moze da brojme kolko pti nekoe ovosje ne bilo seceno!
+                        
                     }
                 }
             }
             deleteFruits();
         }
-
+        public void CheckFruitCollision(Point point)
+        {
+            foreach(Fruit f in AllFruits)
+            {
+                f.IsHitByUser(point);
+                if (f.IsHit)
+                {
+                    //FruitSlicedSound.controls.play();
+                }
+            }
+        }
         private void deleteFruits()
         {
             for (int i = 0; i < AllFruits.Count; i++)
             {
                 if (AllFruits[i].State == 0)
                 {
+                    if(AllFruits[i].Name.Equals("Bomb") && AllFruits[i].IsHit)
+                    {
+                        GameOver = true;
+                    }
+                    if (AllFruits[i].IsHit)
+                    {
+                        TotalPoints += AllFruits[i].Points;
+                    }
                     //Ako e bomba da ne se broi kako miss
-                    if (!AllFruits[i].Name.Equals("Bomb"))
+                    if (!AllFruits[i].Name.Equals("Bomb") && !AllFruits[i].IsHit)
                         Misses++;
                     AllFruits.RemoveAt(i);
                     if (Misses == 3)

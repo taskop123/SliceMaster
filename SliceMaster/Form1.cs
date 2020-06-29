@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WMPLib;
 
 namespace SliceMaster
 {
@@ -22,6 +23,8 @@ namespace SliceMaster
         private Point PreviousPoint;
         private Pen Pen;
         private Graphics graphics;
+        WindowsMediaPlayer GameOverSound;
+       
         public int TotalPoints { get; set; }
         private Timer timer;
 
@@ -36,9 +39,12 @@ namespace SliceMaster
             TimerCall = 0;
             timer1.Start();
             Pause = false;
-            graphics = this.CreateGraphics();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             Pen = new Pen(Color.Gray, 5);
             DialogResult = DialogResult.Cancel;
+            GameOverSound = new WindowsMediaPlayer();
+            
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -82,35 +88,10 @@ namespace SliceMaster
                 TimerCall++;
                 if (Game.GameOver)
                     GameOver();
-                updatePointsAndMisses();
                 Invalidate();
+                toolStripLabelPoints.Text = string.Format("Points: {0}", Game.TotalPoints);
+               
             }
-        }
-        // ne znam zso trepkat X znacte za miss, ako mojs sredi
-        public void updatePointsAndMisses()
-        {
-            Bitmap bitmap = new Bitmap(Properties.Resources.Xsign);
-            bitmap.MakeTransparent();
-            toolStripLabelPoints.Text = string.Format("Points: {0}", Game.TotalPoints);
-            if (Game.Misses >= 1)
-                graphics.DrawImage(bitmap,
-                    new Rectangle(832, 393, 42, 36));
-            if (Game.Misses >= 2)
-                graphics.DrawImage(bitmap,
-                    new Rectangle(784, 393, 42, 36));
-            if (Game.Misses == 3)
-                graphics.DrawImage(bitmap,
-                    new Rectangle(736, 393, 42, 36));
-            bitmap.Dispose();
-        }
-
-        private void Form1_ResizeEnd(object sender, EventArgs e)
-        {
-            //Ako se napravi resize togas ke treba soodvetno da se zgolemat i radiusite, da ne bidat mn malecki
-            Game.Width = Width;
-            Game.Height = Height;
-            /*Game.UpdateRadius();
-            Invalidate();*/
         }
 
         private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -129,6 +110,7 @@ namespace SliceMaster
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
+            graphics = this.CreateGraphics();
             PreviousPoint = e.Location;
         }
 
@@ -139,6 +121,7 @@ namespace SliceMaster
                 CurrentPoint = e.Location;
                 graphics.DrawLine(Pen, PreviousPoint, CurrentPoint);
                 PreviousPoint = CurrentPoint;
+                Game.CheckFruitCollision(CurrentPoint);
             }
         }
         // tuka sakum da postoa 3-4 sek otkoga ke zavrse igrata i da pise game over
@@ -157,11 +140,14 @@ namespace SliceMaster
             timer.Interval = 1000;
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
+            GameOverSound.URL = "game_over.mp3";
+            GameOverSound.controls.play();
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (TimerCall == 4)
+            if (TimerCall == 6)
             {
+                GameOverSound.controls.stop();
                 DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -170,5 +156,11 @@ namespace SliceMaster
                 TimerCall++;
             }
         }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            graphics.Dispose();
+        }
+
     }
 }
