@@ -17,8 +17,6 @@ namespace SliceMaster
             Points = 3;
         }
         public override void IsHitByUser(Point p1)
-        // za voa metod moze ke treba dve tocki, pa da naprajme linija od
-        //tie dve tocki i proverme dali linijata ja sece elipsata ? mouseclick i mouseleave msm oti e koa ke pustis
         {
             float Distance = (p1.X - this.Location.X) * (p1.X - this.Location.X) + (p1.Y - this.Location.Y) * (p1.Y - this.Location.Y);
             if (Distance <= Radius * Radius)

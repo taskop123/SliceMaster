@@ -12,16 +12,15 @@ namespace SliceMaster
     {
         public List<Fruit> AllFruits { get; set; }
         public int TotalPoints { get; set; }
-        public int Misses { get; set; }// TODO: ako ima 3 ili 5 misses(po nas izbor) da se prekine igrata
-        //brzina na dvizenje za site ovosja
+        public int Misses { get; set; }
         public static string[] FruitNames = new string[] {
             "Watermelon",
             "Apple",
             "Pineapple",
             "Orange",
             "Strawberry"
-        }; // ovaa promenliva ke mi koristi koga ke dodavame novo ovosje vo ovaa klasa!
-        public int DirectionOfFruit { get; set; } // 0 - od levo kon desno, 1 - od desno kon levo
+        }; 
+        public int DirectionOfFruit { get; set; } 
         public int Width { get; set; }
         public int Height { get; set; }
         public bool GameOver { get; set; }
@@ -29,7 +28,6 @@ namespace SliceMaster
         WindowsMediaPlayer BombSliced;
 
 
-        //konstruktor
         public GameScene(int WidthOfForm, int HeightOfForm)
         {
             GameOver = false;
@@ -43,22 +41,7 @@ namespace SliceMaster
             BombSliced = new WindowsMediaPlayer();
             //FruitSlicedSound.URL = "fruit_cut.mp3";
         }
-        // Go iskomentirah voa oti ne znam bash da najdum soodveten radius za daden Width i Height
-        // Na primer za 900, 500 da bide 35 ako ti dojde nekoja ideja implementiri go, i vo AddFruit na mestoto na radius
-        // stavi getRadius()
 
-        /*public void UpdateRadius()
-        {
-            foreach (Fruit f in AllFruits)
-            {
-                f.Radius = getRadius();
-            }
-        }*/
-        /*private int getRadius()
-        {
-            return ((Width * Height) / 10000) - 10;
-        }*/
-        //dodavanje na ovosje
         public void AddFruit(String Name, Point Location)
         {
             Fruit NewFruit;
@@ -97,30 +80,27 @@ namespace SliceMaster
         }
         public void MoveFruits()
         {
-            foreach (Fruit f in AllFruits) // vo ovoj metod ke treba da se proveruva i dali e preseceno ovosjeto!
+            foreach (Fruit f in AllFruits) 
             {
-                if (f.Location.Y <= Height - 150 && f.UpOrDown) // dodeka ne ja dostigne Height neka se dvizi nagore
+                if (f.Location.Y <= Height - 150 && f.UpOrDown) 
                 {
                     f.MoveUp(f.Velocity);
                 }
-                else // vo sprotivno odi nadolu
+                else 
                 {
                     f.UpOrDown = false;
                     f.MoveDown(f.Velocity);
-                    if (f.Location.X > this.Width + 110 || f.Location.X < -110 || f.IsHit) // Ovoj uslov mi proveruva dali ovosjeto veke si ja zavrsilo traektorijata i ne bilo preseceno
-                    {// proveruva dali po x oskata e pogolema od goleminata na formata + 50 toa mi e na nekoj nacin offset (go stavam ovoj offset bidejki moze da se sluci uste ne izlezen na ekranot ovosjeto da bide unisteno)
-                     // Dodeka drugiot del mi proveruva ako ovosjeto se dvizi od desno kon levo dali po X oskata vrednosta e pomala od -50px vo levo   
-                        f.State = 0; // do ovoj if se stignuva dokolku
-                        //ZA JOVAN: tuka moze da brojme kolko pti nekoe ovosje ne bilo seceno!
-                        
-                    }
+                }
+                if (f.Location.X > this.Width + 110 || f.Location.X < -110 || f.IsHit) 
+                {   
+                    f.State = 0;
                 }
             }
             deleteFruits();
         }
         public void CheckFruitCollision(Point point)
         {
-            foreach(Fruit f in AllFruits)
+            foreach (Fruit f in AllFruits)
             {
                 f.IsHitByUser(point);
                 if (f.IsHit)
@@ -135,7 +115,7 @@ namespace SliceMaster
             {
                 if (AllFruits[i].State == 0)
                 {
-                    if(AllFruits[i].Name.Equals("Bomb") && AllFruits[i].IsHit)
+                    if (AllFruits[i].Name.Equals("Bomb") && AllFruits[i].IsHit)
                     {
                         GameOver = true;
                     }
@@ -143,7 +123,6 @@ namespace SliceMaster
                     {
                         TotalPoints += AllFruits[i].Points;
                     }
-                    //Ako e bomba da ne se broi kako miss
                     if (!AllFruits[i].Name.Equals("Bomb") && !AllFruits[i].IsHit)
                         Misses++;
                     AllFruits.RemoveAt(i);

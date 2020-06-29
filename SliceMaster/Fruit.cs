@@ -10,21 +10,18 @@ namespace SliceMaster
 {
     public abstract class Fruit
     {
-        public string Name { get; set; } // ime na ovosjeto
-        public Point Location { get; set; } // momentalna polozba na ovosjeto vo formata
-        public Image FruitImage { get; set; } // slika na ovosjeto
-        public float Radius { get; set; } // Sekoe ovosje kje ni bide vo vid na elipsa, i zatoa ke cuvame promenliva radius
-        public bool IsHit { get; set; } // promenliva koja ke cuva vrednost true ili false, vo zavisnost od toa dali nekoe ovosje e preseceno
-        //public Image FruitImageAfterHit { get; set; } // druga slika za ovosjeto otkako ke se presece
-        public int Points { get; set; } // Sekoe ovosje ke nosi razlicen broj na poeni
-        //public int MaxHeight { get; set; } // ovaa promenliva ke mi sodrzi vrednost za toa do kolkava visina ovosjeto ke odi nagore.
+        public string Name { get; set; }
+        public Point Location { get; set; }
+        public Image FruitImage { get; set; }
+        public float Radius { get; set; }
+        public bool IsHit { get; set; }
+        public int Points { get; set; }
         public int Direction { get; set; }
-        public bool UpOrDown { get; set; } // up=true ; down=false
-        public WindowsMediaPlayer FruitSlicedSound{ get; set; }
+        public bool UpOrDown { get; set; }
+        public WindowsMediaPlayer FruitSlicedSound { get; set; }
         public float Velocity { get; set; }
-        public Random VelocityPicker; //Ovaa promenliva ke mi generira random vrednost za brzinata so koja edno ovosje ke se dvizi
-        //public Random MaxHeightPicker; // so ovaa promenliva ke odreduvame do koja visina da se dvizi ovosjeto nagore.
-        public int State { get; set; } // ovaa promenliva ke ni koristi koga sakame da go unistime objektot od klasata fruit, 1 ke ni bide dodeka zivee, 0 znaci deka treba da se unisti.
+        public Random VelocityPicker;
+        public int State { get; set; }
         public Fruit(string Name, Point Location, int Direction, int Radius)
         {
             this.Radius = Radius;
@@ -34,17 +31,15 @@ namespace SliceMaster
             this.Location = Location;
             this.IsHit = false;
             VelocityPicker = new Random();
-            //MaxHeightPicker = new Random();
-            this.Velocity = VelocityPicker.Next(6, 8); // Ovaa promenliva ke mi odreduva so koja brzina ke se dvizi ovosjeto od levo kon desno ili obratno
-            //this.MaxHeight = MaxHeightPicker.Next(350, 400); // da odi nagore do nekoja od 150 px do 220 px vrednost
-            this.State = 1; // inicijalno objektot ke zivee
+            this.Velocity = VelocityPicker.Next(6, 8);
+            this.State = 1;
             FruitSlicedSound = new WindowsMediaPlayer();
         }
 
-        // Gi izbrisah direction od metodite move oti imise problem vaka e podobro
-        public abstract void MoveUp(float velocity); // Metod koj ke ni go dvizi ovosjeto nagore
-        public abstract void MoveDown(float velocity); // Metod koj ke ni go dvizi ovosjeto nadole
-        public abstract void Draw(Graphics g); // crtanje na ovosjeto
-        public abstract void IsHitByUser(Point p1); // metod koj ke proveruva dali korisnikot go presekol ovosjeto
+        
+        public abstract void MoveUp(float velocity);
+        public abstract void MoveDown(float velocity); 
+        public abstract void Draw(Graphics g); 
+        public abstract void IsHitByUser(Point p1); 
     }
 }

@@ -28,7 +28,6 @@ namespace SliceMaster
             Form1 newGame = new Form1();
             WindowsMediaPlayer.controls.stop();
             DialogResult result = newGame.ShowDialog();
-            // ke se prakja scorot so ke se izvadi i ako e pogolem od best score ke se smesti tamu
             if (result == DialogResult.OK)
             {
                 SetScore(newGame.TotalPoints);
