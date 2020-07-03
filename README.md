@@ -1,7 +1,13 @@
-# SliceMaster
+# SliceMaster <img src="https://raw.githubusercontent.com/taskop123/SliceMaster/master/SliceMaster/icon_picture_uyx_icon.ico" width="60" height="60">
 
 Windows Forms Application developed by:
 * Jovan Tashkov - 186092
 * Tashko Pavlov - 181104  
 Application inspired by the game [Fruit Ninja](https://fruitninja.com/).
 ***
+
+Играта којашто ја развивавме е инспирирана од играта [Fruit Ninja](https://fruitninja.com/). Играта SliceMaster е игра во којашто играчот треба да собира поени со сечење на овошја (<img src="https://github.com/taskop123/SliceMaster/blob/master/SliceMaster/Resources/watermelon2.png" width="10" height="10">, <img src="https://github.com/taskop123/SliceMaster/blob/master/SliceMaster/Resources/apple.png" width="10" height="10">, <img src="https://github.com/taskop123/SliceMaster/blob/master/SliceMaster/Resources/orange1.png" width="10" height="10">, <img src="https://github.com/taskop123/SliceMaster/blob/master/SliceMaster/Resources/pineapple.png" width="10" height="10"> и <img src="https://github.com/taskop123/SliceMaster/blob/master/SliceMaster/Resources/strawberry.png" width="10" height="10">) и притоа има бомби (<img src="https://github.com/taskop123/SliceMaster/blob/master/SliceMaster/Resources/bomba.png" width="10" height="10">) кои не се дозволени да се сечат, односно ако се пресече бомба играчот ја губи играта. Победник е оној којшто има најголем број на поени. Секое овошје носи различен број на поени. Исто така играта завршува доколку играчот не пресече 3 овошја, односно 3 овошја ја завршиле својата траекторија на движење без да бидат пресечени од играчот. На одреден број секунди од левата или десната страна на формата се појавуваат 2 типа на овошја коишто се избрани случајно(Random) и една бомба, откако овошјето ќе се појави тоа се движи најпрво нагоре и притоа одејќи кон центарот на формата. Овошјето(тука се смета и бомбата) се движат нагоре сè додека не ја достигнат нивната максимална височина(max-height), потоа, овошјето својата траекторија ја продолжува надолу, сè додека не ја достигне долната граница на формата и тогаш повторно се движи нагоре. Во даден момент овошјата може да се појавуваат само од едната страна, на пример: ако последно овошјата се појавиле од левата страна, сега овошјата ќе се појават од десната страна на формата и обратно. 
+При секое промашување на овошјето, односно не пресечување на овошјето додека се движи, во долниот десен агол се додава знакот: <img src="https://github.com/taskop123/SliceMaster/blob/master/SliceMaster/Resources/Xsign.png" width="10" height="10">, овој знак се додава 3 пати и потоа играта завршува.
+***
+## Како изгледа играњето на играта
+Најпрво при старт на играта се стартнува формата HomePage, која изгледа на следниов начин:
