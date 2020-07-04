@@ -18,7 +18,7 @@ Application inspired by the game [Fruit Ninja](https://fruitninja.com/).
 При клик на ова копче како што може да забележиме не пренасочува веднаш кон играње на играта.
 
 ### Како изгледа играњето на играта
-<img src="https://github.com/taskop123/SliceMaster/blob/master/ScreenShots/bomb_sliced_game_over.gif">
+<img src="https://github.com/taskop123/SliceMaster/blob/master/ScreenShots/game_over_labe.gif">
 Еве како изгледа едно сценарио на завршување на играта. Во долниот лев агол имаме toolStripLabel-а која ни ги брои тековните поени. Исто така во горниот лев акол имаме "menu strip" каде имаме "Pause toolStripMenuItem", при клик на ова копче играта се паузира и воедно името на ова копче се променува во "Continue", играта е паузирана се додека не се притисне на копчето уште еднаш.
 
 ## Како ни се структурирани класите
